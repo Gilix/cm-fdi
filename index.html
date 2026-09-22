@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM-FDI — Cleantech Manufacturing FDI | Net Zero Industrial Policy Lab</title>
+<meta name="description" content="An open, project-level database of cross-border investment in solar, wind, battery and EV manufacturing. Built by the Net Zero Industrial Policy Lab at Johns Hopkins University.">
+<meta property="og:title" content="CM-FDI — Cleantech Manufacturing FDI">
+<meta property="og:description" content="Two decades of capital, mapped to where the clean economy is actually being built. 926 projects, US$579B, 65 host economies.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cmfdi.netzeropolicylab.com/">
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<style>
+:root{
+  --bg:#F3F5F8; --card:#FFFFFF; --border:#E4E8ED;
+  --text:#33414F; --muted:#67727F; --bright:#141B24;
+  --accent:#002D72;
+  --accent-soft:rgba(0,45,114,.07);
+  --solar:#D39200; --wind:#1F7A4D; --battery:#1E4D9B; --ev:#B7280F;
+  --font-ui:'Archivo',system-ui,-apple-system,sans-serif;
+  /* The explorer ships with data-fonts="grotesk", which aliases its display face
+     to the UI face. Matching that here rather than keeping a serif headline: one
+     product should not speak in two voices, and the explorer is the surface
+     people spend time in. Weights and tracking below are lifted from its
+     grotesk rules so the two pages set type identically. */
+  --font-display:var(--font-ui);
+  --font-mono:'DM Mono',ui-monospace,SFMono-Regular,monospace;
+  --maxw:980px; --pad:clamp(22px,5vw,64px); --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--font-ui);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent)}
+
+/* ── HERO ── */
+header{padding:clamp(56px,9vw,104px) 0 0}
+h1{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(38px,6.4vw,60px);line-height:.98;color:var(--bright);
+  margin:22px 0 0;max-width:15ch}
+.stand{margin-top:26px;max-width:62ch;font-size:16.5px;color:var(--muted)}
+.stand b{color:var(--text);font-weight:500}
+
+.cta{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:38px}
+.btn{display:inline-block;font-size:14px;font-weight:500;line-height:1;
+  padding:14px 22px;border-radius:var(--r);border:1px solid transparent;
+  text-decoration:none;transition:background .18s,border-color .18s,color .18s}
+.btn-fill{background:var(--accent);color:#fff}
+.btn-fill:hover{background:#001f52}
+.btn-out{background:var(--card);color:var(--bright);border-color:var(--border)}
+.btn-out:hover{border-color:var(--accent);color:var(--accent)}
+.btn-plain{color:var(--muted);text-decoration:none;font-size:13.5px;
+  border-bottom:1px solid var(--border);padding:0 0 2px;border-radius:0}
+.btn-plain:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ── STAT STRIP ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:46px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.stat{padding:26px 24px}
+.stat + .stat{border-left:1px solid var(--border)}
+.stat-n{font-family:var(--font-display);font-weight:400;font-size:clamp(30px,4.4vw,40px);
+  line-height:1;color:var(--bright);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.stat-l{font-family:var(--font-mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-top:11px}
+.stat-s{font-size:12.5px;color:var(--muted);margin-top:7px;line-height:1.45}
+
+/* ── SECTIONS ── */
+section{padding:clamp(52px,7vw,84px) 0 0}
+h2{font-family:var(--font-display);font-weight:700;font-size:clamp(25px,3.4vw,31px);
+  line-height:1.05;color:var(--bright);letter-spacing:-.03em}
+.lede{margin-top:12px;max-width:58ch;color:var(--muted);font-size:15px}
+
+/* ── WAYS IN ── */
+.ways{margin-top:30px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden}
+.way{display:grid;grid-template-columns:44px 1fr auto;gap:18px;align-items:start;
+  padding:22px 24px;text-decoration:none;transition:background .18s}
+.way + .way{border-top:1px solid var(--border)}
+.way:hover{background:var(--accent-soft)}
+.way-ic{width:38px;height:38px;border-radius:8px;display:grid;place-items:center;
+  background:var(--accent-soft);color:var(--accent)}
+/* These are spans (an <a> cannot contain block-level flow content in HTML5's
+   strictest reading, and nested <div>s here break the row grid), so they need an
+   explicit display or the title and description run together on one line. */
+.way-t{display:block;font-weight:600;font-size:15px;color:var(--bright)}
+.way-d{display:block;font-size:13.5px;color:var(--muted);margin-top:5px;max-width:52ch}
+.way-m{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);
+  white-space:nowrap;padding-top:3px}
+.way-m.soon{color:var(--solar)}
+
+/* ── COVERAGE ── */
+.cov{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;
+  background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.cov-c{background:var(--card);padding:19px 20px}
+.cov-h{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.cov-c p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.cov-c b{color:var(--text);font-weight:600}
+.tech-row{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:10px}
+.tech{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.dot{width:9px;height:9px;border-radius:2px;flex:none}
+
+/* ── CITE ── */
+.cite{margin-top:26px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:22px 24px}
+.cite code{display:block;font-family:var(--font-mono);font-size:12.5px;line-height:1.7;
+  color:var(--text);white-space:pre-wrap;margin-top:10px}
+
+footer{margin-top:clamp(56px,8vw,90px);padding:30px 0 46px;border-top:1px solid var(--border)}
+footer p{font-size:12.5px;color:var(--muted);max-width:70ch}
+footer a{color:var(--muted)}
+footer a:hover{color:var(--accent)}
+
+@media(max-width:700px){
+  .stats{grid-template-columns:1fr}
+  .stat + .stat{border-left:0;border-top:1px solid var(--border)}
+  .way{grid-template-columns:1fr;gap:10px}
+  .way-m{padding-top:0}
+}
+</style>
+<meta name="robots" content="noindex,nofollow">
+<!-- PRE-LAUNCH GUARD: removed by tools/set_launch_state.sh --live -->
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Introducing CM-FDI</div>
+    <h1>Two decades of capital, mapped to where the clean economy is actually being built.</h1>
+    <p class="stand">CM-FDI is an open, project-level database of cross-border investment in solar,
+      wind, battery and electric-vehicle manufacturing. It is built by the
+      <b>Net Zero Industrial Policy Lab</b> at Johns Hopkins University to track who is funding the
+      global race for clean energy, and where the money is landing. Every project is sourced
+      individually from company announcements, filings and trade press.</p>
+
+    <div class="cta">
+      <a class="btn btn-fill" href="explorer.html">Explore the database</a>
+      <a class="btn btn-out" href="#paper">Read the paper</a>
+      <a class="btn-plain" href="data/cm-fdi-projects.csv" download>Download the dataset</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">$579B</div>
+        <div class="stat-l">Disclosed investment</div>
+        <div class="stat-s">Announced or reported capital, not audited spend</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">926</div>
+        <div class="stat-l">Projects tracked</div>
+        <div class="stat-s">384 parent firms, 1997 to 2026</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">65</div>
+        <div class="stat-l">Host economies</div>
+        <div class="stat-s">Invested in from 28 home economies</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="paper">
+  <div class="wrap">
+    <h2>Four ways in</h2>
+    <p class="lede">One dataset, four formats. Take whichever fits what you are trying to do.</p>
+
+    <div class="ways">
+      <a class="way" href="explorer.html">
+        <span class="way-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></span>
+        <span>
+          <span class="way-t">Interactive explorer</span>
+          <span class="way-d">Sweep by year, filter by technology, and drill into any company,
+            country or investment corridor. Every graphic exports as CSV or PNG with its source line.</span>
+        </span>
+        <span class="way-m">cmfdi.netzeropolicylab.com</span>
+      </a>
+
+      <a class="way" href="#">
+        <span class="way-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
+        <span>
+          <span class="way-t">Working paper</span>
+          <span class="way-d">What determines where clean-technology FDI goes, and what two decades
+            of it reveal about industrial strategy. Full replication package included.</span>
+        </span>
+        <span class="way-m soon">Coming soon</span>
+      </a>
+
+      <a class="way" href="data/cm-fdi-projects.csv" download>
+        <span class="way-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18" cy="17" r="2.4"/></svg></span>
+        <span>
+          <span class="way-t">Raw data</span>
+          <span class="way-d">All 926 projects across 26 fields, with per-field source links, as CSV
+            and Excel. The data dictionary ships alongside it and says
+            what the capital column does and does not measure.</span>
+        </span>
+        <span class="way-m">CSV · 776 KB</span>
+      </a>
+
+      <a class="way" href="#">
+        <span class="way-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="13" rx="1.6"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <span>
+          <span class="way-t">Slides and graphics</span>
+          <span class="way-d">The Lab's presentation decks and every published figure, cleared for
+            reuse with attribution.</span>
+        </span>
+        <span class="way-m soon">Coming soon</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What is in it</h2>
+    <p class="lede">Greenfield and expansion projects where the investor is headquartered outside the
+      destination economy. Each record carries its own sources, field by field.</p>
+
+    <div class="cov">
+      <div class="cov-c">
+        <div class="cov-h">Technologies</div>
+        <div class="tech-row">
+          <span class="tech"><i class="dot" style="background:var(--battery)"></i>Battery · 265</span>
+          <span class="tech"><i class="dot" style="background:var(--solar)"></i>Solar · 245</span>
+          <span class="tech"><i class="dot" style="background:var(--ev)"></i>EV · 231</span>
+          <span class="tech"><i class="dot" style="background:var(--wind)"></i>Wind · 185</span>
+        </div>
+      </div>
+      <div class="cov-c">
+        <div class="cov-h">Coverage</div>
+        <p>Announced <b>1997 to 2026</b>, 65 destination economies, 28 home economies, 384 parent
+          firms. The explorer charts from 2001 and places the single earlier project there.
+          <b>213</b> projects are joint ventures.</p>
+      </div>
+      <div class="cov-c">
+        <div class="cov-h">What the numbers are</div>
+        <p>Announced or reported capital in <b>US$ millions</b>. <b>111 of 926</b> projects are
+          announced without a value and read as zero, which is a gap in disclosure rather than a
+          project without capital behind it.</p>
+      </div>
+      <div class="cov-c">
+        <div class="cov-h">Basis</div>
+        <p><b>853 of 926</b> projects are manufacturing; the rest are R&amp;D, design and logistics.
+          The working paper's regressions use the manufacturing subset. The explorer counts all
+          activities, and every figure states which basis it is on.</p>
+      </div>
+    </div>
+
+    <div class="cite">
+      <div class="cov-h">How to cite</div>
+      <code>Bandara, P. and the Net Zero Industrial Policy Lab. Cleantech Manufacturing FDI Dataset,
+edition 2026.09. Johns Hopkins University. https://cmfdi.netzeropolicylab.com</code>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Net Zero Industrial Policy Lab</b>, Johns Hopkins University ·
+      <a href="https://netzeropolicylab.com">netzeropolicylab.com</a><br>
+      Spotted a project we are missing? Flag it through the
+      <a href="explorer.html#feedback">See Something, Say Something</a> form in the explorer.
+      Released under <a href="LICENSE">CC BY 4.0</a>. Please cite as above.</p>
+  </div>
+</footer>
+
+</body>
+</html>

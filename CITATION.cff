@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Cleantech Manufacturing FDI Dataset (CM-FDI)"
+abstract: >-
+  A project-level database of cross-border investment in solar, wind, battery and
+  electric-vehicle manufacturing. 926 projects announced between 1997 and 2026, across
+  384 parent firms investing into 65 destination economies from 28 home economies.
+  Each record is sourced field by field from company announcements, filings and trade
+  press. Capital figures are announced or reported, not audited spend.
+type: dataset
+version: "2026.09"
+date-released: "2026-09-04"
+license: CC-BY-4.0
+url: "https://cmfdi.netzeropolicylab.com"
+authors:
+  - family-names: Bandara
+    given-names: Praveena
+    affiliation: "Net Zero Industrial Policy Lab, Johns Hopkins University"
+  - name: "Net Zero Industrial Policy Lab, Johns Hopkins University"
+    website: "https://netzeropolicylab.com"
+keywords:
+  - foreign direct investment
+  - clean technology
+  - industrial policy
+  - solar
+  - wind
+  - batteries
+  - electric vehicles
+  - supply chains
