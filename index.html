@@ -91,6 +91,9 @@ h2{font-family:var(--font-display);font-weight:700;font-size:clamp(25px,3.4vw,31
 .way-m{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);
   white-space:nowrap;padding-top:3px}
 .way-m.soon{color:var(--solar)}
+/* The appendix cannot be a fifth card: it belongs to the paper, and an <a>
+   inside the paper's <a> would split that card into two click targets. */
+.ways-note{margin-top:12px;font-size:13px;color:var(--muted);max-width:58ch}
 
 /* ── COVERAGE ── */
 .cov{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;
@@ -140,7 +143,7 @@ footer a:hover{color:var(--accent)}
 
     <div class="cta">
       <a class="btn btn-fill" href="explorer.html">Explore the database</a>
-      <a class="btn btn-out" href="#paper">Read the paper</a>
+      <a class="btn btn-out" href="docs/cm-fdi-working-paper.pdf">Read the paper</a>
       <a class="btn-plain" href="data/cm-fdi-projects.csv" download>Download the dataset</a>
     </div>
 
@@ -180,14 +183,16 @@ footer a:hover{color:var(--accent)}
         <span class="way-m">cmfdi.netzeropolicylab.com</span>
       </a>
 
-      <a class="way" href="#">
+      <a class="way" href="docs/cm-fdi-working-paper.pdf">
         <span class="way-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 13h6M9 17h6"/></svg></span>
         <span>
           <span class="way-t">Working paper</span>
-          <span class="way-d">What determines where clean-technology FDI goes, and what two decades
-            of it reveal about industrial strategy. Full replication package included.</span>
+          <span class="way-d"><i>Measuring Green Capital Flows</i>. Cleantech manufacturing was
+            about 2 percent of global FDI until 2017 and reached 20 percent by 2025, and China
+            turned from net recipient into the largest source. Bandara, Ratan, Sahay, Gallagher,
+            Xue, Larsen and Allan, September 2026.</span>
         </span>
-        <span class="way-m soon">Coming soon</span>
+        <span class="way-m">PDF · 1.3 MB</span>
       </a>
 
       <a class="way" href="data/cm-fdi-projects.csv" download>
@@ -211,6 +216,10 @@ footer a:hover{color:var(--accent)}
         <span class="way-m soon">Coming soon</span>
       </a>
     </div>
+
+    <p class="ways-note">The paper's regression tables sit in its
+      <a href="docs/cm-fdi-methodological-appendix.pdf">methodological appendix</a>, which also
+      sets out how each project was sourced and verified. PDF · 576 KB.</p>
   </div>
 </section>
 
@@ -245,8 +254,9 @@ footer a:hover{color:var(--accent)}
       <div class="cov-c">
         <div class="cov-h">Basis</div>
         <p><b>853 of 926</b> projects are manufacturing; the rest are R&amp;D, design and logistics.
-          The working paper's regressions use the manufacturing subset. The explorer counts all
-          activities, and every figure states which basis it is on.</p>
+          The paper works from <b>888 of 926</b>, those announced 2000 to 2025, leaving out
+          cancelled, paused and closed ones. The explorer counts all 926, and every figure states
+          which basis it is on.</p>
       </div>
     </div>
 

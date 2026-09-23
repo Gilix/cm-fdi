@@ -7,6 +7,8 @@ Lab](https://netzeropolicylab.com) at Johns Hopkins University.
 **Explorer:** https://cmfdi.netzeropolicylab.com
 **Data:** [`data/cm-fdi-projects.csv`](data/cm-fdi-projects.csv) ·
 [dictionary](data/DATA_DICTIONARY.md)
+**Paper:** [working paper](docs/cm-fdi-working-paper.pdf) ·
+[methodological appendix](docs/cm-fdi-methodological-appendix.pdf)
 
 ## What is in it
 
@@ -31,9 +33,13 @@ the whole row.
 undisclosed and read as 0. Summing the column understates announced capital by an unknown amount,
 and any average must be taken over the 815 rather than all 926.
 
-**853 of 926 projects are manufacturing.** The rest are R&D, design and logistics. The working
-paper's regressions use the manufacturing subset; the explorer counts every activity. These are
-different universes, and each figure in the explorer states which one it is on.
+**853 of 926 projects are manufacturing.** The rest are R&D, design and logistics.
+
+**The paper works from 888 of the 926.** Its sample is the projects announced between 2000 and
+2025, with cancelled, paused and closed ones left out, across every activity. The explorer counts
+all 926. These are different universes, and each figure in the explorer states which one it is on.
+Table MA1 of the appendix reproduces from `data/cm-fdi-projects.csv` under that filter, to the
+dollar.
 
 ## How to cite
 
@@ -43,6 +49,14 @@ edition 2026.09. Johns Hopkins University. https://cmfdi.netzeropolicylab.com
 ```
 
 Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
+
+For the paper itself:
+
+```
+Bandara, P., Ratan, I., Sahay, T., Gallagher, K., Xue, X., Larsen, M. and Allan, B. (2026).
+Measuring Green Capital Flows: A new database of cleantech manufacturing investment,
+determinants, and impacts. Net Zero Industrial Policy Lab, Johns Hopkins University.
+```
 
 ## Licence
 
@@ -64,7 +78,7 @@ index.html            landing page
 explorer.html         the interactive explorer, generated (see below)
 vendor/               pinned d3, topojson, Chart.js, map geometry, fonts
 data/                 the release CSV, the workbook, and the data dictionary
-docs/                 working paper and slides
+docs/                 the working paper and its methodological appendix
 ```
 
 ## How the explorer is built
