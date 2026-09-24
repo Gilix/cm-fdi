@@ -116,6 +116,20 @@ h2{font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4.4vw,54
 
 /* ── CONTROL / PLAY ROW ── */
 .play-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+/* The world map in #map is hidden by request (2026-09-24). Its markup stays in
+   the DOM on purpose: initMap(), buildRegionTabs() and updateMapChoropleth()
+   reach for these nodes without null checks, and updateMap() is also what calls
+   buildATBars() for the two ranked panels that had to stay. Deleting the nodes
+   throws before the bars are drawn.
+   !important matters: updateMapScale() runs `document.getElementById("map-legend")
+   .style.display = ...` on init and on every pill click, and a plain inline
+   display:none loses to that assignment. A stylesheet rule survives it.
+   The map's own play-row carries .play-row-hidden rather than .play-row so that
+   addCaps() skips it; otherwise it inserts a second "Press play" caption above
+   the ranked panels' slider.
+   To bring the map back: delete this rule and rename .play-row-hidden to
+   .play-row on that row. Everything it needs is still here and still runs. */
+#map-wrap,#map-legend,#map-moderow,#region-tabs,.play-row-hidden{display:none!important}
 .pbtn{width:46px;height:46px;border-radius:50%;border:1px solid var(--accent-bd);background:var(--accent-soft);color:var(--accent);
   cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .pbtn:hover{background:var(--accent);color:#fff;box-shadow:0 0 0 6px var(--accent-soft)}
@@ -636,7 +650,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
     <a href="#firm-analysis"><i>02</i> Firms</a>
     <a href="#spotlight"><i>03</i> Builder</a>
     <a href="#joint-ventures"><i>04</i> JVs</a>
-    <a href="#map"><i>05</i> Map</a>
+    <a href="#map"><i>05</i> Destinations</a>
     <a href="#countries"><i>06</i> Countries</a>
     <a href="#flows"><i>07</i> Flows</a>
     <a href="#hubs"><i>08</i> Hubs</a>
@@ -670,7 +684,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
   <div class="hc">
     <div class="eyebrow">Net Zero Industrial Policy Lab &middot; Clean Energy FDI Explorer</div>
     <h1>The Global Race<br>for <em>Clean</em> Energy</h1>
-    <p class="hsub">Two decades of cross-border capital flowing into Solar, Wind, Battery and Electric Vehicle manufacturing &mdash; the foreign direct investment now redrawing who builds the clean economy.</p>
+    <p class="hsub">Shaped by governments&rsquo; industrial policy, cross-border capital flowing into Solar, Wind, Battery and Electric Vehicle manufacturing factories has dramatically reshaped the world economy over the 21st century.</p>
     <div class="hmeta">A data companion to the Net Zero Industrial Policy Lab&rsquo;s <i>Mapping the Global Race for Clean Energy Manufacturing</i> &middot; FDI announced 1997&ndash;2026 &middot; values in US$ millions</div>
     <div class="hstats">
       <div class="kpi-row">
@@ -698,7 +712,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
       <a href="#firm-analysis"><b>02</b><span>Firm Analysis</span></a>
       <a href="#spotlight"><b>03</b><span>Inside a Builder</span></a>
       <a href="#joint-ventures"><b>04</b><span>Joint Ventures</span></a>
-      <a href="#map"><b>05</b><span>Map</span></a>
+      <a href="#map"><b>05</b><span>Destinations</span></a>
       <a href="#countries"><b>06</b><span>Countries</span></a>
       <a href="#flows"><b>07</b><span>Flows</span></a>
       <a href="#hubs"><b>08</b><span>Hubs</span></a>
@@ -885,7 +899,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
       <div class="sl">04 &mdash; Joint Ventures</div>
       <h2>Joint<br>Ventures</h2>
     </div>
-    <div class="sd">Many green-tech projects are structured as joint ventures &mdash; often with a <em>local</em> partner in the destination market. Explore who partners with whom.</div>
+    <div class="sd">Joint ventures are an established route to local ownership, building domestic supply chains and technology transfer. Many green-tech projects are structured as joint ventures &mdash; often with a <em>local</em> partner in the destination market. Explore who partners with whom.</div>
   </div>
   <div class="jv-stats" id="jv-stats"></div>
   <div class="card" style="padding:18px 18px 8px;margin-bottom:22px">
@@ -918,10 +932,10 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
 
 
 <!-- 02 MAP -->
-<section id="map" data-screen-label="05 · Map">
+<section id="map" data-screen-label="05 · Destinations">
   <div class="sh">
     <div><div class="sl">05 &mdash; Destination Countries</div><h2>Where the<br>Money Flows</h2></div>
-    <div class="sd">Country shading = cumulative investment intensity (built &amp; under construction only). Pins = individual project locations (city-level), coloured by technology; they accumulate year by year.</div>
+    <div class="sd">Cumulative investment by destination country and by investor country, ranked and updated year by year.</div>
   </div>
   <div class="takeaway"><span class="tk-ic">Takeaway</span><p>The <b>United States ($102.5B)</b> is the largest single destination, followed by <b>China ($46.3B)</b>, <b>Indonesia ($27.2B)</b> and <b>Hungary ($26.0B)</b>. Shading shows built and under-construction value; pins mark individual projects.</p></div>
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:10px">
@@ -934,7 +948,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
     </div>
     <div id="map-legend" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"></div>
   </div>
-  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px">
+  <div id="map-moderow" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px">
     <div class="map-mode" id="map-mode">
       <button data-mode="intensity" class="on">Intensity</button>
       <button data-mode="bubbles">Bubbles</button>
@@ -942,7 +956,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
     <div id="map-scale" class="scalebar"></div>
   </div>
   <div class="rtab-row" id="region-tabs"></div>
-  <div class="play-row">
+  <div class="play-row-hidden">
     <button class="pbtn" id="mapPb"><svg id="mapIc" width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,2 12,7 3,12"/></svg></button>
     <div class="ybig" id="mapY">2001</div>
     <div class="ysw"><input type="range" class="ysl" id="mapSl" min="2001" max="2026" value="2001"><div class="ylb"><span>2001</span><span>2026</span></div></div>
@@ -1027,10 +1041,11 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
     <div><div class="sl">08 &mdash; Emerging Hubs</div><h2>The New<br>Frontiers</h2></div>
     <div class="sd">Countries with the sharpest acceleration in green FDI since 2018.</div>
   </div>
-  <div class="takeaway"><span class="tk-ic">Takeaway</span><p>Since 2018, <b>Indonesia</b> added the most new projects (<b>+35</b>), followed by <b>Malaysia (+27)</b>, <b>Thailand (+25)</b> and <b>Vietnam (+24)</b> — a cluster of Southeast Asian manufacturing hubs.</p></div>
+  <div class="takeaway"><span class="tk-ic">Takeaway</span><p>Since 2018, the United States (<b>+45</b>) and Indonesia (<b>+41</b>) have added the most projects against their own pre-2018 records, followed by Mexico (<b>+32</b>), Thailand (<b>+29</b>) and Malaysia (<b>+25</b>).</p></div>
   <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Scale vs. Acceleration &mdash; every destination, bubble size = investment</div>
     <div class="quad-wrap" id="hub-quad" style="margin-bottom:34px;min-height:380px"></div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Fastest-accelerating hubs since 2018</div>
+    <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);margin-bottom:16px">Click on any country to see its geo-located manufacturing projects.</div>
     <div id="hubs-grid"></div>
 </section>
 
@@ -1729,7 +1744,7 @@ function buildHubs(){
   HUBS_DATA.forEach(h=>{
     const pct=h.projects_recent/h.total*100,mult=h.projects_early>0?(h.projects_recent/h.projects_early).toFixed(1)+"x":"New";
     const card=document.createElement("div");card.className="hcard";
-    card.innerHTML=`<div class="hn">${h.country}</div><div class="hnum">+${h.growth}</div><div class="hsub2">projects since 2018 &middot; ${mult} growth</div><div class="htr"><div class="hfill" style="width:${pct}%"></div></div>`;
+    card.innerHTML=`<div class="hn">${h.country}</div><div class="hnum">+${h.growth}</div><div class="hsub2">more projects than before 2018 &middot; ${mult} growth</div><div class="htr"><div class="hfill" style="width:${pct}%"></div></div>`;
     const rows=CTRY_ALL.filter(d=>d.country===h.country);const tot=d3.sum(rows,d=>d.investment);const secs=rows.map(r=>`<div class="tr"><span style="color:${C[r.sector]}">${r.sector}</span><span class="tv">${r.projects}p &middot; ${fmt(r.investment)}</span></div>`).join("");
     card.addEventListener("mouseover",e=>showTip(e,`<strong>${h.country}</strong><div class="tr"><span>Total</span><span class="tv">${fmt(tot)}</span></div>${secs}`));
     card.addEventListener("mousemove",moveTip);card.addEventListener("mouseout",hideTip);
@@ -2229,7 +2244,7 @@ function buildHubQuad(){
   g.append("g").attr("class","axis").attr("transform","translate(0,"+h+")").call(d3.axisBottom(x).ticks(6)).call(function(a){a.select(".domain").remove();a.selectAll(".tick line").remove();});
   g.append("g").attr("class","axis").call(d3.axisLeft(y).ticks(6)).call(function(a){a.select(".domain").remove();a.selectAll(".tick line").remove();});
   g.append("text").attr("class","quad-axis-l").attr("x",w).attr("y",h+36).attr("text-anchor","end").text("Total projects (scale)");
-  g.append("text").attr("class","quad-axis-l").attr("transform","rotate(-90)").attr("x",0).attr("y",-42).attr("text-anchor","end").text("New projects since 2018");
+  g.append("text").attr("class","quad-axis-l").attr("transform","rotate(-90)").attr("x",0).attr("y",-42).attr("text-anchor","end").text("Net gain vs before 2018");
   g.selectAll("c").data(data).join("circle").attr("class","quad-dot").attr("cx",function(d){return x(d.scale);}).attr("cy",function(d){return y(d.growth);}).attr("r",function(d){return r(d.inv);}).attr("fill",function(d){return d.col;}).attr("fill-opacity",.26).attr("stroke",function(d){return d.col;}).attr("stroke-width",1.4).on("mouseover",function(e,d){showTip(e,"<strong>"+d.country+"</strong><div class=\"tr\"><span>Total projects</span><span class=\"tv\">"+d.scale+"</span></div><div class=\"tr\"><span>New since 2018</span><span class=\"tv\">+"+d.growth+"</span></div><div class=\"tr\"><span>Investment</span><span class=\"tv\">"+fmt(d.inv)+"</span></div>");}).on("mousemove",moveTip).on("mouseout",hideTip);
   var lab=data.slice().sort(function(a,b){return (b.scale+b.growth*3)-(a.scale+a.growth*3);}).slice(0,10);
   g.selectAll("t").data(lab).join("text").attr("class","quad-lbl").attr("x",function(d){return x(d.scale)+r(d.inv)+4;}).attr("y",function(d){return y(d.growth)+3;}).text(function(d){return d.country;});
