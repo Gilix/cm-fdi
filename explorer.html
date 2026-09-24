@@ -374,6 +374,37 @@ html[data-motion="off"] *{animation-duration:.001s!important;transition-duration
   #tweaks{right:10px;left:10px;width:auto;bottom:10px}
 }
 
+#outbound .cs-map-wrap{width:100%;position:relative;border:1px solid var(--border);background:var(--bg2);overflow:hidden}
+#outbound .cs-map-attribution{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);margin-top:8px;text-align:right}
+#outbound .cs-legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}
+#outbound .cs-leg-item{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--muted2)}
+#outbound .cs-leg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+#outbound .cs-callout-label{font-family:var(--font-ui);font-size:11px;fill:var(--bright);font-weight:600}
+#outbound .cs-callout-sub{font-family:var(--font-ui);font-size:10.5px;fill:var(--muted2)}
+#outbound .cs-callout-amt{font-family:var(--font-mono);font-size:10.5px;fill:var(--accent);font-weight:500}
+#outbound .cs-country{fill:var(--bg3);stroke:var(--bg2);stroke-width:.6}
+#outbound .cs-dot{stroke:#fff;stroke-width:.5;cursor:pointer}
+#outbound .cs-dot:hover{stroke:var(--bright);stroke-width:1.2}
+#outbound .cs-leader{stroke:var(--muted);stroke-width:1;fill:none}
+#outbound .cs-callout-pt{fill:var(--bright)}
+#outbound .two-col.cs-rank{margin-top:8px}
+#outbound .cs-rank-list{border:1px solid var(--border);border-radius:var(--r);background:var(--bg2);overflow:hidden}
+#outbound .cs-rank-row{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:13px}
+#outbound .cs-rank-row:last-child{border-bottom:none}
+#outbound .cs-rank-n{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);width:16px}
+#outbound .cs-rank-bar-wrap{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+#outbound .cs-rank-bar{height:100%;background:var(--accent);border-radius:3px}
+#outbound .cs-rank-ctry{width:120px;flex-shrink:0}
+#outbound .cs-rank-val{font-family:var(--font-mono);font-size:11.5px;color:var(--muted2);width:80px;text-align:right;flex-shrink:0}
+#outbound .cs-investor-pills{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+#outbound .cs-investor-row{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin:14px 0 4px}
+#outbound .cs-investor-select-wrap{display:flex;align-items:center;gap:9px}
+#outbound .cs-investor-select-wrap label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.03em;color:var(--muted);white-space:nowrap}
+#outbound #cs-investor-select{font-family:var(--font-ui);font-size:12.5px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg2);color:var(--text);cursor:pointer}
+#outbound #cs-investor-select:hover{border-color:var(--accent)}
+#outbound .cs-pill{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--muted2);cursor:pointer;transition:all .15s ease}
+#outbound .cs-pill:hover{border-color:var(--accent);color:var(--accent)}
+#outbound .cs-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 <style id="v9gg-additions">.vc-row{display:flex;align-items:center;gap:14px;margin-bottom:11px}
 .vc-name{width:130px;flex-shrink:0;font-size:12.5px;color:var(--text)}
@@ -653,7 +684,8 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
     <a href="#map"><i>05</i> Destinations</a>
     <a href="#countries"><i>06</i> Countries</a>
     <a href="#flows"><i>07</i> Flows</a>
-    <a href="#hubs"><i>08</i> Hubs</a>
+    <a href="#outbound"><i>08</i> Outbound</a>
+    <a href="#hubs"><i>09</i> Hubs</a>
   </nav>
   <div class="nav-progress" id="nav-progress"></div>
 </header>
@@ -682,7 +714,7 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
 <section class="hero" id="top" data-screen-label="Hero">
   <div class="hbg"></div><div class="hgrid"></div>
   <div class="hc">
-    <div class="eyebrow">Net Zero Industrial Policy Lab &middot; Clean Energy FDI Explorer</div>
+    <div class="eyebrow">Net Zero Industrial Policy Lab &middot; Cleantech Manufacturing FDI Explorer</div>
     <h1>The Global Race<br>for <em>Clean</em> Energy</h1>
     <p class="hsub">Shaped by governments&rsquo; industrial policy, cross-border capital flowing into Solar, Wind, Battery and Electric Vehicle manufacturing factories has dramatically reshaped the world economy over the 21st century.</p>
     <div class="hmeta">A data companion to the Net Zero Industrial Policy Lab&rsquo;s <i>Mapping the Global Race for Clean Energy Manufacturing</i> &middot; FDI announced 1997&ndash;2026 &middot; values in US$ millions</div>
@@ -715,7 +747,8 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
       <a href="#map"><b>05</b><span>Destinations</span></a>
       <a href="#countries"><b>06</b><span>Countries</span></a>
       <a href="#flows"><b>07</b><span>Flows</span></a>
-      <a href="#hubs"><b>08</b><span>Hubs</span></a>
+      <a href="#outbound"><b>08</b><span>Outbound</span></a>
+      <a href="#hubs"><b>09</b><span>Hubs</span></a>
     </nav>
     <a class="hscroll" href="#timeline">Begin the story <span class="dn">&darr;</span></a>
   </div>
@@ -1035,10 +1068,34 @@ html[data-fonts="grotesk"] .hd-title{font-weight:700}
   ========================================================================== -->
 </section>
 
-<!-- 04 HUBS -->
-<section id="hubs" data-screen-label="08 · Hubs">
+<!-- 08 OUTBOUND -->
+<section id="outbound" data-screen-label="08 &middot; Outbound">
   <div class="sh">
-    <div><div class="sl">08 &mdash; Emerging Hubs</div><h2>The New<br>Frontiers</h2></div>
+    <div><div class="sl">08 &mdash; Outbound Investment by Source Country</div><h2>Where Each<br>Investor&rsquo;s Capital Lands</h2></div>
+    <div class="sd">Every disclosed overseas project from a given investor country, geocoded to the city it was built in, sized by investment and coloured by technology. Switch investor country below.</div>
+  </div>
+  <div class="cs-investor-row">
+    <div class="cs-investor-pills" id="cs-investor-pills"></div>
+    <div class="cs-investor-select-wrap">
+      <label for="cs-investor-select">Or choose any investor country</label>
+      <select id="cs-investor-select"></select>
+    </div>
+  </div>
+  <div class="takeaway" id="cs-takeaway"><span class="tk-ic">Takeaway</span><p id="cs-takeaway-text"></p></div>
+  <div class="cs-legend" id="cs-legend"></div>
+  <div class="cs-map-wrap" id="cs-map-wrap"></div>
+  <div class="two-col cs-rank">
+    <details class="card drop-card" open>
+      <summary class="ct drop-summary" id="cs-rank-title">Top 10 Destinations</summary>
+      <div class="cs-rank-list" id="cs-rank-list"></div>
+    </details>
+  </div>
+</section>
+
+<!-- 09 HUBS -->
+<section id="hubs" data-screen-label="09 · Hubs">
+  <div class="sh">
+    <div><div class="sl">09 &mdash; Emerging Hubs</div><h2>The New<br>Frontiers</h2></div>
     <div class="sd">Countries with the sharpest acceleration in green FDI since 2018.</div>
   </div>
   <div class="takeaway"><span class="tk-ic">Takeaway</span><p>Since 2018, the United States (<b>+45</b>) and Indonesia (<b>+41</b>) have added the most projects against their own pre-2018 records, followed by Mexico (<b>+32</b>), Thailand (<b>+29</b>) and Malaysia (<b>+25</b>).</p></div>
@@ -1763,9 +1820,10 @@ function init(){
   var BUILD={
     map:function(){initMap().then(function(){setMapY(2026);setRanksY(2026);});},
     flows:function(){setSkY(2024);if(document.getElementById("arrow-map-wrap"))initArrowMap().then(function(){setAfY(2015);});},
-    hubs:function(){buildHubs();try{buildHubQuad();}catch(e){}try{hubSpark();}catch(e){}}
+    hubs:function(){buildHubs();try{buildHubQuad();}catch(e){}try{hubSpark();}catch(e){}},
+    outbound:function(){window.csBoot&&window.csBoot();}
   };
-  var pend={map:1,flows:1,hubs:1};
+  var pend={map:1,flows:1,hubs:1,outbound:1};
   function run(id){if(!pend[id])return;pend[id]=0;try{BUILD[id]();}catch(e){console.warn('[lazy build]',id,e);}}
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){io.unobserve(en.target);run(en.target.id);}});},{rootMargin:'300px 0px 300px 0px'});
@@ -2102,7 +2160,7 @@ faRenderTrends();
   var links={};
   var navAs=document.querySelectorAll('.nav-links a');
   for(var i=0;i<navAs.length;i++){links[navAs[i].getAttribute('href').slice(1)]=navAs[i];}
-  var ids=['timeline','firm-analysis','spotlight','joint-ventures','map','countries','flows','hubs'];
+  var ids=['timeline','firm-analysis','spotlight','joint-ventures','map','countries','flows','outbound','hubs'];
   if('IntersectionObserver' in window){
     var spy=new IntersectionObserver(function(es){
       es.forEach(function(en){
@@ -3184,6 +3242,273 @@ html[data-mode="light"] .country-shape{stroke:#c8d0db}
     if(document.getElementById("hub-detail")&&_openCountry)drawHubMap(_openCountry);},220);});
 })();
 </script>
+<script id="v9gg-outbound">
+const CS_INVESTOR_DATA={};
+
+const CS_INVESTORS = ["China", "Germany", "Japan", "South Korea", "United States"];
+
+// Hand-picked flagship deals per investor country, verified from the project list
+// (largest single project per major destination region for that investor).
+const CS_CALLOUTS = {
+  "China": [
+    {company:"CATL", city:"Debrecen, Hungary", sector:"Battery", inv:7500, lat:47.54678, lng:21.65357, dx:26, dy:-58, anchor:"start"},
+    {company:"Gotion", city:"Kenitra, Morocco", sector:"Battery", inv:6500, lat:34.29313, lng:-6.54602, dx:-10, dy:54, anchor:"end"},
+    {company:"Xinyi", city:"Rempang, Indonesia", sector:"Solar", inv:11500, lat:0.8243, lng:104.18737, dx:34, dy:34, anchor:"start"},
+    {company:"Shedrive", city:"Chonburi, Thailand", sector:"EV", inv:7600, lat:13.18738, lng:101.09957, dx:36, dy:-8, anchor:"start"},
+    {company:"Gotion", city:"Manteno, Illinois", sector:"Battery", inv:2000, lat:41.29297, lng:-87.85358, dx:-30, dy:-46, anchor:"end"},
+    {company:"BYD", city:"S\u00e3o Paulo, Brazil", sector:"EV", inv:3500, lat:-23.50212, lng:-46.63791, dx:-34, dy:40, anchor:"end"},
+  ],
+  "Germany": [
+    {company:"Enercon", city:"Fortaleza, Brazil", sector:"Wind", inv:6500, lat:-3.80175, lng:-38.54568, dx:-30, dy:44, anchor:"end"},
+    {company:"PowerCo (VW)", city:"St. Thomas, Ontario", sector:"Battery", inv:4800, lat:42.7954, lng:-81.19792, dx:-30, dy:-46, anchor:"end"},
+    {company:"Mercedes-Benz", city:"Tuscaloosa, Alabama", sector:"EV", inv:4000, lat:33.24841, lng:-87.56517, dx:-32, dy:38, anchor:"end"},
+    {company:"Volkswagen", city:"Sagunto, Spain", sector:"Battery", inv:3135, lat:39.67435, lng:-0.27976, dx:28, dy:-42, anchor:"start"},
+  ],
+  "Japan": [
+    {company:"Toyota", city:"Liberty, North Carolina", sector:"Battery", inv:13900, lat:35.83373, lng:-79.53716, dx:-32, dy:-44, anchor:"end"},
+    {company:"Honda", city:"Alliston, Ontario", sector:"EV", inv:11000, lat:44.11763, lng:-79.85799, dx:-30, dy:-58, anchor:"end"},
+    {company:"Maruti Suzuki", city:"Hansalpur, India", sector:"EV", inv:8000, lat:23.07968, lng:72.09134, dx:34, dy:-26, anchor:"start"},
+    {company:"AESC (Envision)", city:"Douai, France", sector:"Battery", inv:2400, lat:50.32194, lng:3.07396, dx:30, dy:-38, anchor:"start"},
+  ],
+  "South Korea": [
+    {company:"Hyundai Motor Group", city:"Ellabell, Georgia", sector:"EV", inv:7600, lat:32.1198, lng:-81.45969, dx:-30, dy:38, anchor:"end"},
+    {company:"CS Wind", city:"Kuantan, Malaysia", sector:"Wind", inv:6000, lat:3.7788, lng:103.33963, dx:34, dy:26, anchor:"start"},
+    {company:"SK Innovation", city:"Glendale, Kentucky", sector:"Battery", inv:5800, lat:37.64958, lng:-85.8853, dx:-32, dy:-44, anchor:"end"},
+    {company:"SK Innovation", city:"Iv\u00e1ncsa, Hungary", sector:"Battery", inv:2290, lat:47.13693, lng:18.78782, dx:30, dy:-36, anchor:"start"},
+  ],
+  "United States": [
+    {company:"Tesla", city:"Shanghai, China", sector:"EV", inv:7000, lat:31.20033, lng:121.44089, dx:34, dy:-30, anchor:"start"},
+    {company:"Tesla", city:"Santa Catarina, Mexico", sector:"EV", inv:5000, lat:25.66765, lng:-100.43198, dx:-30, dy:40, anchor:"end"},
+    {company:"Ford", city:"Almussafes, Spain", sector:"EV", inv:2200, lat:39.31733, lng:-0.38678, dx:-30, dy:-38, anchor:"end"},
+    {company:"Ford", city:"Kocaeli, Turkey", sector:"EV", inv:2200, lat:40.73279, lng:29.90737, dx:30, dy:30, anchor:"start"},
+    {company:"Ford", city:"Oakville, Ontario", sector:"EV", inv:1800, lat:43.41182, lng:-79.64492, dx:-30, dy:-44, anchor:"end"},
+  ],
+};
+
+(function(){
+  let _csWorld = null;
+  const SECTOR_COLOR = {Solar:"var(--solar)", Wind:"var(--wind)", Battery:"var(--battery)", EV:"var(--ev)"};
+  let currentInvestor = "China";
+
+  function renderPills(){
+    const el = document.getElementById("cs-investor-pills");
+    el.innerHTML = CS_INVESTORS.map(c =>
+      `<button type="button" class="cs-pill${c === currentInvestor ? " active" : ""}" data-investor="${c}">${c}</button>`
+    ).join("");
+    el.querySelectorAll(".cs-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentInvestor = btn.dataset.investor;
+        el.querySelectorAll(".cs-pill").forEach(b => b.classList.toggle("active", b === btn));
+        syncSelect();
+        pushState();
+        renderTakeaway();
+        renderLegend();
+        renderMap();
+        renderRankList();
+      });
+    });
+  }
+
+  // The chosen investor is part of the view, so Link and Share carry it and a
+  // cold deep link restores it. Checked against the data here rather than in the
+  // state layer, which decodes the hash before PINS has been read.
+  function pushState(){
+    try { window.CMFDI_STATE.set({ sec: "outbound", investor: currentInvestor }); } catch(e){}
+  }
+  function hydrate(){
+    var want = "";
+    try { want = window.CMFDI_STATE.get().investor || ""; } catch(e){}
+    if (want && allInvestorCountries().indexOf(want) >= 0) currentInvestor = want;
+  }
+
+  function allInvestorCountries(){
+    if (typeof PINS === "undefined") return CS_INVESTORS.slice();
+    const totals = {};
+    PINS.forEach(p => {
+      if (!p.hq) return;
+      totals[p.hq] = (totals[p.hq] || 0) + (p.investment || 0);
+    });
+    return Object.keys(totals).sort((a, b) => totals[b] - totals[a]);
+  }
+
+  function renderSelect(){
+    const sel = document.getElementById("cs-investor-select");
+    if (!sel) return;
+    const countries = allInvestorCountries();
+    sel.innerHTML = countries.map(c => `<option value="${c}"${c === currentInvestor ? " selected" : ""}>${c}</option>`).join("");
+    sel.addEventListener("change", () => {
+      currentInvestor = sel.value;
+      document.querySelectorAll("#cs-investor-pills .cs-pill").forEach(b => b.classList.toggle("active", b.dataset.investor === currentInvestor));
+      pushState();
+      renderTakeaway();
+      renderLegend();
+      renderMap();
+      renderRankList();
+    });
+  }
+
+  function syncSelect(){
+    const sel = document.getElementById("cs-investor-select");
+    if (sel) sel.value = currentInvestor;
+  }
+
+  function currentPins(){
+    if (CS_INVESTOR_DATA[currentInvestor]) return CS_INVESTOR_DATA[currentInvestor];
+    if (typeof PINS === "undefined") return [];
+    return PINS.filter(p => p.hq === currentInvestor).map(p => ({
+      company: p.company, sector: p.sector, country: p.country, city: p.city,
+      year: p.year, inv: p.investment, status: p.status, activity: p.activity,
+      lat: p.lat, lng: p.lng,
+    }));
+  }
+
+  function renderTakeaway(){
+    const pins = currentPins();
+    const total = pins.reduce((s,d) => s + (d.inv||0), 0);
+    const countries = new Set(pins.map(d => d.country));
+    const byCountry = {};
+    pins.forEach(d => { byCountry[d.country] = (byCountry[d.country]||0) + (d.inv||0); });
+    const top3 = Object.entries(byCountry).sort((a,b) => b[1]-a[1]).slice(0,3)
+      .map(([c,v]) => `${c} ($${(v/1000).toFixed(1)}B)`).join(", ");
+    document.getElementById("cs-takeaway-text").innerHTML =
+      `${currentInvestor}-headquartered firms have invested at least <b>$${(total/1000).toFixed(1)}B</b> across <b>${pins.length} disclosed projects</b>, reaching <b>${countries.size} destination countries</b> since 2001. ${top3} lead as destinations.`;
+    document.getElementById("cs-rank-title").textContent = `Top 10 Destinations of ${currentInvestor} Outbound FDI`;
+  }
+
+  function renderLegend(){
+    const legendEl = document.getElementById("cs-legend");
+    legendEl.innerHTML = ["Solar","Wind","Battery","EV"].map(s =>
+      `<span class="cs-leg-item"><span class="cs-leg-dot" style="background:${SECTOR_COLOR[s]}"></span>${s}</span>`
+    ).join("") + `<span class="cs-leg-item" style="margin-left:auto">Circle size = investment (US$M)</span>`;
+  }
+
+  function renderMap(){
+    const wrap = document.getElementById("cs-map-wrap");
+    if(!wrap) return;
+    wrap.innerHTML = "";
+    const W = wrap.clientWidth || 900, H = 460;
+    const proj = d3.geoNaturalEarth1().scale(W/6.5).translate([W/2, H/2.0]);
+    const path = d3.geoPath().projection(proj);
+
+    const svg = d3.select(wrap).append("svg").attr("width", W).attr("height", H).style("display","block");
+    const g = svg.append("g");
+
+    if(!_csWorld) return;
+    const world = _csWorld;
+    g.append("g").selectAll("path")
+      .data(world.features).join("path").attr("class","cs-country").attr("d", path);
+
+    const pins = currentPins();
+    const maxInv = d3.max(pins, d => d.inv) || 1;
+    const r = d3.scaleSqrt().domain([0, maxInv]).range([1.2, 22]);
+
+    g.append("g").selectAll("circle")
+      .data(pins.filter(d => d.lat != null && d.lng != null))
+      .join("circle")
+      .attr("class","cs-dot")
+      .attr("cx", d => { const p = proj([d.lng, d.lat]); return p ? p[0] : -9999; })
+      .attr("cy", d => { const p = proj([d.lng, d.lat]); return p ? p[1] : -9999; })
+      .attr("r", d => r(d.inv || 0))
+      .attr("fill", d => SECTOR_COLOR[d.sector] || "var(--muted)")
+      .attr("fill-opacity", 0.62)
+      .on("mouseover", (e, d) => {
+        if (typeof showTip !== "function") return;
+        const secColor = (typeof C !== "undefined" && C[d.sector]) || SECTOR_COLOR[d.sector] || "#888";
+        const actColor = (typeof ACT_C !== "undefined" && ACT_C[d.activity]) || "#888";
+        const statColor = (typeof SC !== "undefined" && SC[d.status]) || "#888";
+        const invStr = (typeof fmt === "function") ? (d.inv > 0 ? fmt(d.inv) : "Undisclosed") : (d.inv > 0 ? `$${(d.inv/1000).toFixed(2)}B` : "Undisclosed");
+        showTip(e, `<strong>${d.company}</strong>` +
+          `<div class="tr"><span>City</span><span class="tv">${d.city||"\u2014"}</span></div>` +
+          `<div class="tr"><span>Sector</span><span class="tv" style="color:${secColor}">${d.sector}</span></div>` +
+          `<div class="tr"><span>Activity</span><span class="tv" style="color:${actColor}">${d.activity||"\u2014"}</span></div>` +
+          `<div class="tr"><span>Status</span><span class="tv" style="color:${statColor}">${d.status}</span></div>` +
+          `<div class="tr"><span>Year</span><span class="tv">${d.year||"\u2014"}</span></div>` +
+          `<div class="tr"><span>Investment</span><span class="tv">${invStr}</span></div>`);
+      })
+      .on("mousemove", (e) => { if (typeof moveTip === "function") moveTip(e); })
+      .on("mouseout", () => { if (typeof hideTip === "function") hideTip(); });
+
+    const co = g.append("g");
+    (CS_CALLOUTS[currentInvestor] || []).forEach(c => {
+      const p = proj([c.lng, c.lat]);
+      if(!p) return;
+      const [x, y] = p;
+      const lx = x + c.dx, ly = y + c.dy;
+      co.append("circle").attr("class","cs-callout-pt").attr("cx", x).attr("cy", y).attr("r", 2.6);
+      co.append("path").attr("class","cs-leader")
+        .attr("d", `M${x},${y} L${lx - (c.anchor==="start"?6:-6)},${ly}`);
+      const align = c.anchor === "start" ? "start" : "end";
+      co.append("text").attr("class","cs-callout-label").attr("x", lx).attr("y", ly - 12)
+        .attr("text-anchor", align).text(`${c.company} \u00b7 ${c.sector}`);
+      co.append("text").attr("class","cs-callout-sub").attr("x", lx).attr("y", ly - 1)
+        .attr("text-anchor", align).text(c.city);
+      co.append("text").attr("class","cs-callout-amt").attr("x", lx).attr("y", ly + 12)
+        .attr("text-anchor", align).text(`$${(c.inv/1000).toFixed(1)}B`);
+    });
+  }
+
+  function renderRankList(){
+    const el = document.getElementById("cs-rank-list");
+    if(!el) return;
+    const pins = currentPins();
+    const byCountry = {};
+    pins.forEach(d => {
+      if(!byCountry[d.country]) byCountry[d.country] = {inv:0, n:0};
+      byCountry[d.country].inv += (d.inv || 0);
+      byCountry[d.country].n += 1;
+    });
+    const top10 = Object.entries(byCountry).sort((a,b) => b[1].inv - a[1].inv).slice(0,10);
+    const maxInv = top10[0] ? top10[0][1].inv : 1;
+    el.innerHTML = top10.map(([ctry, d], i) => `
+      <div class="cs-rank-row">
+        <span class="cs-rank-n">${i+1}</span>
+        <span class="cs-rank-ctry">${ctry}</span>
+        <span class="cs-rank-bar-wrap"><span class="cs-rank-bar" style="width:${(d.inv/maxInv*100).toFixed(1)}%"></span></span>
+        <span class="cs-rank-val">$${(d.inv/1000).toFixed(1)}B &middot; ${d.n}</span>
+      </div>
+    `).join("");
+  }
+
+  function boot(){
+    if(typeof d3 === "undefined" || typeof topojson === "undefined"){
+      setTimeout(boot, 150);
+      return;
+    }
+    hydrate();
+    renderPills();
+    renderSelect();
+    renderTakeaway();
+    renderLegend();
+    renderMap();
+    renderRankList();
+    let t;
+    window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(renderMap, 200); });
+  }
+  // Built on scroll-in by BUILD.outbound, not at load: this draws a world map
+  // and it sits below the fold. The geometry is the vendored file the main map
+  // and the hub-detail panels already fetch, so it is warm by the time we ask.
+  window.csBoot = function(){
+    if(_csWorld){ boot(); return; }
+    d3.json("vendor/world-atlas-110m.json").then(function(topo){
+      try { _csWorld = topojson.feature(topo, topo.objects.countries); } catch(e){}
+      boot();
+    }).catch(function(){ boot(); });
+  };
+  // The export card reads the selection so CSV, PNG and Link follow the pills.
+  window.__OUTBOUND__ = {
+    investor: function(){ return currentInvestor; },
+    pins: function(){ return currentPins(); },
+    setInvestor: function(c){
+      if(!c) return;
+      currentInvestor = c;
+      document.querySelectorAll("#cs-investor-pills .cs-pill").forEach(function(b){
+        b.classList.toggle("active", b.dataset.investor === currentInvestor);
+      });
+      syncSelect(); renderTakeaway(); renderLegend(); renderMap(); renderRankList();
+    }
+  };
+})();
+</script>
 <script id="v9gg-feedback">
 /* ── See something, say something (#6) ── */
 (function(){
@@ -3312,11 +3637,12 @@ html[data-mode="light"] .country-shape{stroke:#c8d0db}
   // table you are on) is deliberately absent: a shared link should reproduce a
   // question, not how far someone had scrolled.
 
-  var DEFAULTS = { sec: "", tech: "all", year: "", metric: "inv", country: "", company: "" };
+  var DEFAULTS = { sec: "", tech: "all", year: "", metric: "inv", country: "", company: "",
+                   investor: "" };
   var TECHS    = ["all", "Solar", "Wind", "Battery", "EV"];
   var METRICS  = ["inv", "proj"];
   var SECTIONS = ["timeline", "firm-analysis", "spotlight", "joint-ventures",
-                  "map", "countries", "flows", "hubs"];
+                  "map", "countries", "flows", "outbound", "hubs"];
 
   var S = Object.assign({}, DEFAULTS);
 
@@ -3328,6 +3654,7 @@ html[data-mode="light"] .country-shape{stroke:#c8d0db}
     if (S.metric  && S.metric !== DEFAULTS.metric)   p.push("metric=" + S.metric);
     if (S.country && S.country !== DEFAULTS.country) p.push("country=" + encodeURIComponent(S.country));
     if (S.company && S.company !== DEFAULTS.company) p.push("company=" + encodeURIComponent(S.company));
+    if (S.investor && S.investor !== DEFAULTS.investor) p.push("investor=" + encodeURIComponent(S.investor));
     return p.length ? "#" + p.join("&") : "";
   }
 
@@ -3372,6 +3699,10 @@ html[data-mode="light"] .country-shape{stroke:#c8d0db}
     if (y >= 2001 && y <= 2026) S.year = String(y);
     if (spec.country) S.country = String(spec.country).slice(0, 80);
     if (spec.company) S.company = String(spec.company).slice(0, 120);
+    // Free text like country/company: the investor list comes from the data,
+    // which a cold deep link decodes before any of it has loaded, so it is
+    // length-capped here and checked against the pills when the section builds.
+    if (spec.investor) S.investor = String(spec.investor).slice(0, 80);
   }
 
   function parseHash() {
@@ -3412,7 +3743,24 @@ html[data-mode="light"] .country-shape{stroke:#c8d0db}
 
   function G(id) { return document.getElementById(id); }
 
+  // The outbound section owns its own selection, so the card asks it rather
+  // than keeping a second copy that could disagree with the pills on screen.
+  function OB()  { try { return window.__OUTBOUND__.investor(); } catch (e) { return "China"; } }
+  function OBP() { try { return window.__OUTBOUND__.pins(); }     catch (e) { return []; } }
+
   var CARDS = {
+    outbound: {
+      title: function () { return "Where " + OB() + "'s capital lands"; },
+      sub:   function () { return "Overseas projects by " + OB() + "-headquartered firms"; },
+      svg:   function () { return G("cs-map-wrap") && G("cs-map-wrap").querySelector("svg"); },
+      cols:  ["company", "investor_country", "destination_country", "city", "technology",
+              "year", "investment_usd_m", "activity", "status"],
+      rows:  function () {
+        return OBP().map(function (p) {
+          return [p.company, OB(), p.country, p.city, p.sector, p.year, p.inv, p.activity, p.status];
+        });
+      }
+    },
     timeline: {
       title: function () { return "The investment wave"; },
       sub:   function () { return "Annual FDI flows by operational status"; },
