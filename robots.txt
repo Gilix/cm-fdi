@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /
+Sitemap: https://cmfdi.netzeropolicylab.com/sitemap.xml
