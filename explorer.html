@@ -1821,7 +1821,7 @@ function init(){
     map:function(){initMap().then(function(){setMapY(2026);setRanksY(2026);});},
     flows:function(){setSkY(2024);if(document.getElementById("arrow-map-wrap"))initArrowMap().then(function(){setAfY(2015);});},
     hubs:function(){buildHubs();try{buildHubQuad();}catch(e){}try{hubSpark();}catch(e){}},
-    outbound:function(){window.csBoot&&window.csBoot();}
+    outbound:function(){var n=60;(function w(){      if(window.csBoot){window.csBoot();return;}      if(--n>0)setTimeout(w,100);    })();}
   };
   var pend={map:1,flows:1,hubs:1,outbound:1};
   function run(id){if(!pend[id])return;pend[id]=0;try{BUILD[id]();}catch(e){console.warn('[lazy build]',id,e);}}
