@@ -10,10 +10,11 @@ How the dataset was compiled and verified, the PPML and Mundlak specifications, 
 local-projection design, and Tables MA1 to MA3 and A1 to A15. The paper cites those tables by
 number, so the two files travel together.
 
-The paper works from 888 of the 926 projects in the release: those announced between 2000 and
-2025, with cancelled, paused and closed ones left out. Table MA1 reproduces from
-`data/cm-fdi-projects.csv` under that filter, to the dollar, which is what `bin/validate.py`
-recomputes so the landing page cannot drift from it.
+The paper was written on an earlier release and works from 888 of the 926 projects in it: those
+announced between 2000 and 2025, with cancelled, paused and closed ones left out. Table MA1
+reproduces to the dollar from `data/cm-fdi-projects.csv` as it stood at commit `df14666` of this
+repository. The data audit of 30 September 2026 revised the workbook, and the current
+`data/cm-fdi-projects.csv` gives 871 of 914 under the same filter.
 
 The Lab's slides are pending a decision on what to publish and when. That tile on the landing page
 reads "coming soon" until then.

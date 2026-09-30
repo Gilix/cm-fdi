@@ -12,16 +12,16 @@ Lab](https://netzeropolicylab.com) at Johns Hopkins University.
 
 ## What is in it
 
-926 projects announced between 1997 and 2026, across 384 parent firms investing into 65
-destination economies from 28 home economies. 213 are joint ventures. Total disclosed capital is
-US$579B. One project predates 2001; the explorer's time axis starts at 2001 and charts it there.
+914 projects announced between 1997 and 2026, across 381 parent firms investing into 65
+destination economies from 28 home economies. 206 are joint ventures. Total disclosed capital is
+US$446B. One project predates 2001; the explorer's time axis starts at 2001 and charts it there.
 
 | Technology | Projects | Disclosed capital |
 |---|---:|---:|
-| Battery | 265 | $228.6B |
-| EV | 231 | $208.6B |
-| Solar | 245 | $73.8B |
-| Wind | 185 | $67.7B |
+| Battery | 268 | $218.1B |
+| EV | 231 | $157.7B |
+| Solar | 242 | $58.1B |
+| Wind | 173 | $12.2B |
 
 A project qualifies when the investor is headquartered outside the destination economy. Each
 record carries its own sources, field by field, so a reader can check one number without accepting
@@ -29,17 +29,19 @@ the whole row.
 
 ## Before quoting a figure
 
-**815 of 926 projects report a capital value.** The other 111 are announced with the amount
+**704 of 914 projects report a capital value.** The other 210 are announced with the amount
 undisclosed and read as 0. Summing the column understates announced capital by an unknown amount,
-and any average must be taken over the 815 rather than all 926.
+and any average must be taken over the 704 rather than all 914.
 
-**853 of 926 projects are manufacturing.** The rest are R&D, design and logistics.
+**845 of 914 projects are manufacturing.** The rest are R&D, design and logistics.
 
-**The paper works from 888 of the 926.** Its sample is the projects announced between 2000 and
-2025, with cancelled, paused and closed ones left out, across every activity. The explorer counts
-all 926. These are different universes, and each figure in the explorer states which one it is on.
-Table MA1 of the appendix reproduces from `data/cm-fdi-projects.csv` under that filter, to the
-dollar.
+**The paper was written on an earlier release, and works from 888 of the 926 projects there.**
+Its sample is the projects announced between 2000 and 2025, with cancelled, paused and closed ones
+left out, across every activity. A data audit completed on 30 September 2026 revised the workbook,
+and on this release the same rule selects 871 of the 914, so Table MA1 of the appendix does not
+reproduce from `data/cm-fdi-projects.csv`. The release it does reproduce from, to the dollar, is in
+this repository's history at commit `df14666`. The explorer counts all 914, and each figure in it
+states which universe it is on.
 
 ## How to cite
 
@@ -90,6 +92,4 @@ export layer on every run. Editing the generated file directly means the next bu
 reverts the change.
 
 Every figure that appears in prose on the page is recomputed from the workbook at build time, and
-a validator fails the build if a published number and the data disagree. That check exists because
-the page previously said wind manufacturing drew $12B beside a data constant that said $67.7B, and
-nothing in the build could notice.
+a validator fails the build if a published number and the data disagree.
