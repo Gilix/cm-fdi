@@ -26,6 +26,7 @@ check /explorer.html               text/html
 check /data/cm-fdi-projects.csv    csv
 check /vendor/d3.v7.9.0.min.js     javascript
 check /vendor/world-atlas-110m.json json
+check /vendor/goatcounter-count.v5.js javascript
 # GitHub Pages serves an extensionless file as application/octet-stream, so
 # this asserts the byte length instead of a content type.
 for i in 1 2; do

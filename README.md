@@ -66,6 +66,13 @@ The dataset is released under [CC BY 4.0](LICENSE): reuse and redistribution are
 attribution. Praveena Bandara is the data author. The explorer's code is in this repository under
 the same terms.
 
+## Analytics
+
+Visits to the landing page and the explorer, clicks on the data and paper links, and uses of the
+explorer's export buttons are counted with [GoatCounter](https://www.goatcounter.com), which sets
+no cookies. The script is served from `vendor/` with the rest of the site. A file fetched
+directly by its URL, or through this repository, is not counted.
+
 ## Contributing a missing project
 
 Spotted a project that is not here? Use the **See Something, Say Something** form in the explorer.

@@ -1153,7 +1153,7 @@ footer a:hover{color:var(--bright);border-color:var(--muted)}
   </div>
   <div class="ft-col">
     <div class="ft-h">Vintage</div>
-    <p>Announced 1997&ndash;2026 &middot; charted from 2001<br>65 destination countries<br>914 projects &middot; 381 firms<br>Dashboard build September 2026</p>
+    <p>Announced 1997&ndash;2026 &middot; charted from 2001<br>65 destination countries<br>914 projects &middot; 381 firms<br>Dashboard build October 2026</p>
   </div>
 </footer>
 <div class="tooltip" id="tooltip"></div>
@@ -4169,6 +4169,15 @@ const CS_CALLOUTS = {
     var bar = btn.closest(".cmfdi-exp"), key = bar.dataset.card, act = btn.dataset.act;
     var c = CARDS[key];
     if (!c) return;
+    // Count the action as an event when GoatCounter is on the page. Only the
+    // public build carries it (bin/build_public_site.sh), so a local copy of the
+    // explorer counts nothing. These exports carry the data off the site, which
+    // makes them the downloads worth knowing about. A counter that throws must
+    // never cost the reader the export, so the call is fenced off.
+    try {
+      if (window.goatcounter && window.goatcounter.count)
+        window.goatcounter.count({ path: "export/" + key + "/" + act, title: c.title(), event: true });
+    } catch (e) { /* counting is best effort */ }
 
     if (act === "csv") {
       var rows = c.rows();
@@ -4279,5 +4288,6 @@ const CS_CALLOUTS = {
 })();
 
 </script>
+<script data-goatcounter="https://cmfdi.goatcounter.com/count" async src="vendor/goatcounter-count.v5.js" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"></script>
 </body>
 </html>
