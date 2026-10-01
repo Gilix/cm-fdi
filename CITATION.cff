@@ -8,7 +8,7 @@ abstract: >-
   Each record is sourced field by field from company announcements, filings and trade
   press. Capital figures are announced or reported, not audited spend.
 type: dataset
-version: "2026.09"
+version: "2026.09.30"
 date-released: "2026-09-30"
 license: CC-BY-4.0
 url: "https://cmfdi.netzeropolicylab.com"

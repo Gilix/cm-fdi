@@ -47,7 +47,7 @@ states which universe it is on.
 
 ```
 Bandara, P. and the Net Zero Industrial Policy Lab. Cleantech Manufacturing FDI Dataset,
-edition 2026.09. Johns Hopkins University. https://cmfdi.netzeropolicylab.com
+edition 2026.09.30. Johns Hopkins University. https://cmfdi.netzeropolicylab.com
 ```
 
 Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
